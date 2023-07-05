@@ -1,0 +1,183 @@
+body{
+    background-color: #eee;
+    font-family: Arial, Helvetica, sans-serif;
+}
+#app{
+    display: flex;
+}
+
+#app div {
+    background-color: #fff;
+    flex-grow: 1;
+    margin: 5px;
+    margin-top: 0;
+
+}
+
+#meals {
+    display: flex;
+    flex-direction: column;
+    margin-left:0px;
+}
+#orders {
+    margin-right:0px;
+}
+
+
+body ul{
+    list-style-type: none;
+}
+
+#btn {
+    width: 150px;
+    text-align: center;
+    background-color: #17495e ;
+    color:#fff;
+    padding: 10px 15px;
+    border: solid 0px;
+    margin: 15px;
+    margin-right: 10px; 
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+#btn:disabled{
+    background-color: #ccc ;
+    color:#fff;
+}
+
+#meals-list{
+    justify-items: center;
+}
+
+#meals-list li {
+    cursor: pointer;
+}
+
+.selected{
+    background-color: red;
+    color: white;
+}
+
+#app .form-main{
+    margin: 0 auto;
+    margin-top: 100px;
+    max-width: 300px;
+    padding: 15px;
+    padding-bottom: 30px;
+   
+}
+
+#form-tittle{
+    text-align: center;
+    font-size: 25px;
+}
+
+.login-form, #meal-form  p {
+    margin-bottom: 5px;
+    font-size: 14px;
+
+}
+
+form input{
+    font-size: 14px;
+    width: calc(100% - 10px);
+    height: 35px;
+    padding-left: 5px;
+    background-color: #eee;
+    border: none;
+    color: #555;
+}
+
+.btn {
+    background-color: #007598;
+    color: #fff;
+    border: none;
+    padding:  15px;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+.entryBtn {
+    width: 150px;
+    text-align: center;
+    background-color: orange ;
+    color:#fff;
+    padding: 10px 15px;
+    border: solid 0px;
+    margin-top: 15px; 
+    margin-left: 10px;
+    cursor: pointer;
+}
+#deleteBtn {
+    width: 150px;
+    text-align: center;
+    background-color: red ;
+    color:#fff;
+    padding: 10px 15px;
+    border: solid 0px;
+    margin-top: 15px; 
+    margin-left: 0px;
+    cursor: pointer;
+}
+#deleteBtn:disabled {
+    background-color: #ccc ;
+}
+
+#entryBtn:disabled {
+    background-color: #ccc ;
+}
+
+#logOutBtn{
+    width: 150px;
+    text-align: center;
+    background-color: #000000 ;
+    color:#fff;
+    padding: 10px 15px;
+    border: solid 0px;
+    margin-top: 15px; 
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.block {
+    width: calc(100% - 8px);
+}
+
+#regB,#send-meal  {
+    background-color: orange;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    margin-top: 0px;
+    cursor: pointer;
+    width: calc(100% - 10px)
+    
+}
+.register-form p {
+    font-size: 16px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+.register-form input {
+    margin-top: 2px;
+    font-size: 14px;
+    width: calc(100% - 10px);
+    height: 35px;
+    padding-left: 5px;
+    background-color: #eee;
+    border: none;
+    color: #555;   
+}
+
+#order {
+    width: 200px;
+}
+
+#entry{
+    width:110px;
+}
+#buttonsForm{
+    display: flex;
+    justify-content: space-between;
+}
