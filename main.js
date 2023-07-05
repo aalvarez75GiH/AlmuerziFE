@@ -7,7 +7,8 @@ let user = {};
 let prep;
 let nombreMeal = String;
 let nombreUser = String;
-const server_url = "https://almuerzi-eqs1qqssc-aalvarez75gih-s-team.vercel.app";
+
+const server_url = "https://almuerzi-bfehj8fbn-aalvarez75gih.vercel.app";
 
 const stringToHtml = (s) => {
   //8
