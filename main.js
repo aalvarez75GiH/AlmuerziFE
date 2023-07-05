@@ -7,6 +7,7 @@ let user = {};
 let prep;
 let nombreMeal = String;
 let nombreUser = String;
+const server_url = "https://almuerzi-eqs1qqssc-aalvarez75gih-s-team.vercel.app";
 
 const stringToHtml = (s) => {
   //8
@@ -51,7 +52,7 @@ const deleteMealAndOrder = (mealDeleted) => {
     "Important: If there are orders related with that meal they will be removed from database"
   );
 
-  fetch("https://serverless-hq0mks4rt-aalvarez75gih.vercel.app/api/orders") //1
+  fetch(`${server_url}/api/orders"`) //1
     .then((response) => response.json()) //2
     .then((r) => {
       const template = r.map((t) => {
@@ -62,17 +63,13 @@ const deleteMealAndOrder = (mealDeleted) => {
           //   fetch(
 
           //fetch para eliminar meals
-          fetch(
-            "https://serverless-hq0mks4rt-aalvarez75gih.vercel.app/api/orders" +
-              id_order,
-            {
-              method: "delete",
-              headers: {
-                "Content-Type": "application/json",
-                authorization: token,
-              },
-            }
-          ).then((x) => x);
+          fetch(`${server_url}/api/orders` + id_order, {
+            method: "delete",
+            headers: {
+              "Content-Type": "application/json",
+              authorization: token,
+            },
+          }).then((x) => x);
         } else {
           flag = true;
         }
@@ -117,7 +114,7 @@ const renderMeal = () => {
       desc: descFood,
     };
 
-    fetch("https://serverless-hq0mks4rt-aalvarez75gih.vercel.app/api/meals", {
+    fetch(`${server_url}/api/meals`, {
       // fetch("http://localhost:3000/api/meals", {
       method: "POST",
       headers: {
@@ -162,17 +159,14 @@ const deleteMeal = () => {
 
   // axios.delete("/persona_eliminar/" + id)
   //   fetch("https://serverless.aalvarez75gih.vercel.app/api/meals/" + meal_id, {
-  fetch(
-    "https://serverless-hq0mks4rt-aalvarez75gih.vercel.app/api/meals" + meal_id,
-    {
-      //fetch para eliminar meals
-      method: "delete",
-      headers: {
-        "Content-Type": "application/json",
-        authorization: token,
-      },
-    }
-  ).then((x) => {
+  fetch(`${server_url}/api/meals` + meal_id, {
+    //fetch para eliminar meals
+    method: "delete",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: token,
+    },
+  }).then((x) => {
     alert("Meal will be deleted, Click OK to continue...");
     deleteMealAndOrder(meal_id);
   });
@@ -203,7 +197,7 @@ const renderData = () => {
         user_id: user._id,
       };
       // fetch para hacer Post de ordenes
-      fetch("https://serverless-hq0mks4rt-aalvarez75gih.vercel.api/orders", {
+      fetch(`${server_url}/api/orders`, {
         //33
         method: "POST",
         headers: {
@@ -223,9 +217,7 @@ const renderData = () => {
 
           // Fetch para traer la data de Usuarios de la BD
           //   fetch("https://serverless.aalvarez75gih.vercel.app/api/users") //1
-          fetch(
-            "https://serverless-hq0mks4rt-aalvarez75gih.vercel.app/api/users"
-          ) //1
+          fetch(`${server_url}/api/users`) //1
             .then((response) => response.json()) //2
             .then((dataUser) => {
               userState = dataUser;
@@ -242,18 +234,15 @@ const renderData = () => {
 
               // Fetch para hacer el post de la orden en el modelo de Backup
               //   fetch("https://serverless.aalvarez75gih.vercel.app/api/backup", {
-              fetch(
-                "https://serverless-hq0mks4rt-aalvarez75gih.vercel.app/api/backup",
-                {
-                  //33
-                  method: "POST",
-                  headers: {
-                    "Content-Type": "application/json",
-                    authorization: token,
-                  },
-                  body: JSON.stringify(bOrder),
-                }
-              )
+              fetch(`${server_url}/api/backup`, {
+                //33
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                  authorization: token,
+                },
+                body: JSON.stringify(bOrder),
+              })
                 .then((x) => x.json())
                 .then((respuesta) => respuesta);
               // console.log('se guardo en backup');
@@ -273,7 +262,7 @@ const renderData = () => {
     const deleteMealBtn = document.getElementById("deleteBtn");
     // fetch de GET de las meals
     // fetch("https://serverless.aalvarez75gih.vercel.app/api/meals") //1
-    fetch("https://serverless-hq0mks4rt-aalvarez75gih.vercel.app/api/meals") //1
+    fetch(`${server_url}/api/meals`) //1
       .then((response) => response.json()) //2
       .then((data) => {
         mealState = data;
@@ -291,9 +280,7 @@ const renderData = () => {
 
         // fetch de GET de orders
         // fetch("https://serverless.aalvarez75gih.vercel.app/api/orders") //20
-        fetch(
-          "https://serverless-hq0mks4rt-aalvarez75gih.vercel.app/api/orders"
-        ) //20
+        fetch(`${server_url}/api/orders`) //20
           .then((response) => response.json())
           .then((ordersData) => {
             const orderList = document.getElementById("order-list"); //21
@@ -350,32 +337,26 @@ const renderRegister = () => {
     };
 
     console.log(user.nombre);
-    fetch(
-      "https://serverless-hq0mks4rt-aalvarez75gih.vercel.app/api/users/register",
-      {
-        //33
-        // fetch('https://serverless.aalvarez75gih.vercel.app/api/users/register',{
+    fetch(`${server_url}/api/users/register`, {
+      //33
+      // fetch('https://serverless.aalvarez75gih.vercel.app/api/users/register',{
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(user),
+    }).then((x) => {
+      console.log(x);
+      //   fetch("https://serverless.aalvarez75gih.vercel.app/api/auth/login", {
+      fetch(`${server_url}/api/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(user),
-      }
-    ).then((x) => {
-      console.log(x);
-      //   fetch("https://serverless.aalvarez75gih.vercel.app/api/auth/login", {
-      fetch(
-        "https://serverless-hq0mks4rt-aalvarez75gih.vercel.app/api/auth/login",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email, password }),
-          // body: JSON.stringify({ email: email, password: password }) Esto es lo mismo que lo de
-          //arriba pero como los nombres de la variables es el mismo se puede acortar
-        }
-      )
+        body: JSON.stringify({ email, password }),
+        // body: JSON.stringify({ email: email, password: password }) Esto es lo mismo que lo de
+        //arriba pero como los nombres de la variables es el mismo se puede acortar
+      })
         .then((x) => x.json())
         .then((response) => {
           localStorage.setItem("token", response.token);
@@ -399,18 +380,15 @@ const renderLogin = () => {
     const password = document.getElementById("password").value;
     // fetch("https://serverless-hq0mks4rt-aalvarez75gih.vercel.app", {
     // fetch("https://serverless-hq0mks4rt-aalvarez75gih.vercel.app", {
-    fetch(
-      "https://serverless-hq0mks4rt-aalvarez75gih.vercel.app/api/auth/login",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-        // body: JSON.stringify({ email: email, password: password }) Esto es lo mismo que lo de
-        //arriba pero como los nombres de la variables es el mismo se puede acortar
-      }
-    )
+    fetch(`${server_url}/api/auth/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password }),
+      // body: JSON.stringify({ email: email, password: password }) Esto es lo mismo que lo de
+      //arriba pero como los nombres de la variables es el mismo se puede acortar
+    })
       .then((res) => {
         if (res.status == 404) {
           alert("usuario No encontrado");
@@ -427,16 +405,13 @@ const renderLogin = () => {
       })
       // fetch("https://serverless.aalvarez75gih.vercel.app/api/auth/me",
       .then((token) => {
-        return fetch(
-          "https://serverless-hq0mks4rt-aalvarez75gih.vercel.app/api/auth/me",
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-              authorization: token,
-            },
-          }
-        );
+        return fetch(`${server_url}/api/auth/me`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            authorization: token,
+          },
+        });
       })
       .then((x) => x.json())
       // .then(user => console.log(user))
